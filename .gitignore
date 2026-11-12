@@ -18,3 +18,12 @@ venv/
 
 # Editor settings
 .vscode/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Python build artifacts
+build/
+dist/

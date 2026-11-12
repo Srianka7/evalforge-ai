@@ -21,3 +21,20 @@ class EvaluationResult(BaseModel):
     max_score: float = 100.0
     grade: str
     criterion_scores: dict[str, int]
+
+
+class AIEvaluationRequest(BaseModel):
+    prompt: str = Field(min_length=1, max_length=10000)
+    response: str = Field(min_length=1, max_length=20000)
+
+
+class AIEvaluationAssessment(BaseModel):
+    accuracy: int = Field(ge=0, le=5)
+    relevance: int = Field(ge=0, le=5)
+    completeness: int = Field(ge=0, le=5)
+    clarity: int = Field(ge=0, le=5)
+
+    accuracy_reason: str
+    relevance_reason: str
+    completeness_reason: str
+    clarity_reason: str

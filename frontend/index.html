@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvalForge AI | Response Evaluation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1>EvalForge AI</h1>
+        <p>AI Response Evaluation & Quality Assurance</p>
+    </header>
+
+    <main class="container">
+
+        <section class="analytics-section">
+            <h2>Dashboard Analytics</h2>
+
+           
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h3>Total Evaluations</h3>
+                    <p id="total-evaluations">Loading...</p>
+                </div>
+
+                <div class="analytics-card">
+                    <h3>Average Score</h3>
+                    <p id="average-score">Loading...</p>
+                    <div class="analytics-progress">
+                        <div id="average-score-bar" class="analytics-progress-fill"></div>
+                    </div>
+                </div>
+
+                <div class="analytics-card">
+                    <h3>Excellent</h3>
+                    <p id="excellent-count">Loading...</p>
+                </div>
+
+                <div class="analytics-card">
+                    <h3>Good</h3>
+                    <p id="good-count">Loading...</p>
+                </div>
+
+                <div class="analytics-card">
+                    <h3>Fair</h3>
+                    <p id="fair-count">Loading...</p>
+                </div>
+
+                <div class="analytics-card">
+                    <h3>Poor / Very Poor</h3>
+                    <p id="poor-count">Loading...</p>
+                </div>
+
+                <div class="analytics-card">
+                    <h3>Excellent Rate</h3>
+                    <p id="excellent-rate">Loading...</p>
+                </div>
+
+                <div class="analytics-card">
+                    <h3>Non-Excellent Evaluations</h3>
+                    <p id="other-rate">Loading...</p>
+                </div>
+            </div>
+
+            <div class="grade-chart-card">
+                <h2>Grade Distribution</h2>
+                <p class="chart-subtitle">
+                    Breakdown of AI evaluation results by grade
+                </p>
+
+                <div id="grade-chart">
+                    <p>Loading grade distribution...</p>
+                </div>
+            </div>
+
+            <div class="trend-chart-card">
+                <h2>Evaluation Performance Trend</h2>
+                <p class="chart-subtitle">
+                    Average evaluation scores over time
+                </p>
+
+                <div id="trend-chart">
+                    <p>Loading performance trends...</p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="card">
+            <h2>Evaluate AI Response</h2>
+                <div class="evaluation-mode">
+                    <label for="evaluation-mode">Evaluation Mode</label>
+
+                    <select id="evaluation-mode">
+                        <option value="manual">Manual Evaluation</option>
+                        <option value="automatic">Automatic AI Evaluation (Qwen)</option>
+                    </select>
+                </div>
+            <form id="evaluation-form">
+                <label for="prompt">Prompt</label>
+                <textarea id="prompt" required
+                    placeholder="Enter your prompt"></textarea>
+
+                <label for="response">AI Response</label>
+                <textarea id="response" required
+                    placeholder="Enter the AI response"></textarea>
+                    <div class="criteria" id="manual-criteria">
+                        <h3>Evaluation Criteria (0–5)</h3>
+
+                        <label for="accuracy">Accuracy</label>
+                        <select id="accuracy">
+                            <option value="5">5 - Excellent</option>
+                            <option value="4">4 - Good</option>
+                            <option value="3" selected>3 - Average</option>
+                            <option value="2">2 - Poor</option>
+                            <option value="1">1 - Very Poor</option>
+                            <option value="0">0 - Not Met</option>
+                        </select>
+
+                        <label for="relevance">Relevance</label>
+                        <select id="relevance">
+                            <option value="5">5 - Excellent</option>
+                            <option value="4">4 - Good</option>
+                            <option value="3" selected>3 - Average</option>
+                            <option value="2">2 - Poor</option>
+                            <option value="1">1 - Very Poor</option>
+                            <option value="0">0 - Not Met</option>
+                        </select>
+
+                        <label for="completeness">Completeness</label>
+                        <select id="completeness">
+                            <option value="5">5 - Excellent</option>
+                            <option value="4">4 - Good</option>
+                            <option value="3" selected>3 - Average</option>
+                            <option value="2">2 - Poor</option>
+                            <option value="1">1 - Very Poor</option>
+                            <option value="0">0 - Not Met</option>
+                        </select>
+
+                        <label for="clarity">Clarity</label>
+                        <select id="clarity">
+                            <option value="5">5 - Excellent</option>
+                            <option value="4">4 - Good</option>
+                            <option value="3" selected>3 - Average</option>
+                            <option value="2">2 - Poor</option>
+                            <option value="1">1 - Very Poor</option>
+                            <option value="0">0 - Not Met</option>
+                        </select>
+                    </div>
+                <button type="submit">Evaluate Response</button>
+            </form>
+        </section>
+
+                        <section class="card" id="results">
+                            <h2>Evaluation Results</h2>
+                            <p>Your evaluation results will appear here.</p>
+                        </section>
+
+                        <section class="card">
+                    <h2>Evaluation History</h2>
+
+                    <label for="grade-filter">Filter by Grade</label>
+                    <select id="grade-filter">
+                        <option value="">All Grades</option>
+                        <option value="Excellent">Excellent</option>
+                        <option value="Good">Good</option>
+                        <option value="Fair">Fair</option>
+                        <option value="Poor">Poor</option>
+                        <option value="Very Poor">Very Poor</option>
+                    </select>
+
+                    <div id="history">
+                <p>Loading evaluation history...</p>
+            </div>
+        </section>
+
+<section class="card" id="evaluation-detail" hidden>
+    <h2>Evaluation Details</h2>
+
+    <div id="detail-content">
+        <p>Select an evaluation from the history to view its details.</p>
+    </div>
+
+    <button type="button" id="close-detail">
+        Close Details
+    </button>
+</section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
